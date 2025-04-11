@@ -14,11 +14,17 @@ test("Ship size", () => {
 });
 
 test("Ship get sunk", () => {
-  const ship = new Ship(3);
-  ship.hit();
-  expect(ship.isSunk()).toBeFalsy();
-  ship.hit();
-  expect(ship.isSunk()).toBeFalsy();
-  ship.hit();
-  expect(ship.isSunk()).toBeTruthy();
+  const sizes = [1, 2, 3, 4, 5];
+  sizes.forEach((size) => {
+    const ship = new Ship(size);
+    expect(ship.isSunk()).toBeFalsy();
+    for (let i = 0; i < size; i++) {
+      ship.hit();
+      if (i === size - 1) {
+        expect(ship.isSunk()).toBeTruthy();
+      } else {
+        expect(ship.isSunk()).toBeFalsy();
+      }
+    }
+  });
 });

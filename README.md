@@ -1,1 +1,1 @@
-# node-webpack-template
+# Battleship game

@@ -8,7 +8,8 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",

@@ -35,7 +35,7 @@ export default class Gameboard {
     const cell = this.#board[y][x];
 
     return {
-      ship: cell.ship ? this.#getSanitizedShip(cell.ship) : null,
+      ship: cell.ship !== null ? this.#getSanitizedShip(cell.ship) : null,
       hasBeenHit: cell.hasBeenHit,
     };
   }

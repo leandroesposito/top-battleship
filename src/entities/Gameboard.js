@@ -6,8 +6,8 @@ export default class Gameboard {
   constructor(width, height) {
     this.#width = width;
     this.#height = height ?? width;
-    this.#board = [...Array(height)].map(() =>
-      new Array(width).fill({ ship: null, hasBeenHit: false }),
+    this.#board = [...Array(this.#height)].map(() =>
+      new Array(this.#width).fill({ ship: null, hasBeenHit: false }),
     );
   }
 

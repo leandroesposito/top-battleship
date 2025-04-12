@@ -9,7 +9,7 @@ export default class Gameboard {
     this.#width = width;
     this.#height = height ?? width;
     this.#board = [...Array(this.#height)].map(() =>
-      new Array(this.#width).fill({ ship: null, hasBeenHit: false }),
+      [...Array(this.#width)].map(() => ({ ship: null, hasBeenHit: false })),
     );
   }
 

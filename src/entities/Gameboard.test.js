@@ -38,16 +38,15 @@ describe("Gameboard place ship", () => {
     const gameboard = new Gameboard(10);
     gameboard.placeShip(2, 2, 3, true);
 
-    // ship
-    expect(gameboard.getCell(2, 2).ship).toBeDefined();
-    expect(gameboard.getCell(2, 3).ship).toBeDefined();
-    expect(gameboard.getCell(2, 4).ship).toBeDefined();
-    // ends
-    expect(gameboard.getCell(2, 1).ship).toBeNull();
-    expect(gameboard.getCell(2, 5).ship).toBeNull();
+    // Ship
+    expect(gameboard.getCell(2, 2).ship).not.toBeNull();
+    expect(gameboard.getCell(3, 2).ship).not.toBeNull();
+    expect(gameboard.getCell(4, 2).ship).not.toBeNull();
 
-    //sides
-    expect(gameboard.getCell(1, 3).ship).toBeNull();
-    expect(gameboard.getCell(3, 3).ship).toBeNull();
+    // Boundaries
+    expect(gameboard.getCell(1, 2).ship).toBeNull(); // Left of head
+    expect(gameboard.getCell(5, 4).ship).toBeNull(); // Right of tail
+    expect(gameboard.getCell(2, 1).ship).toBeNull(); // Upper side
+    expect(gameboard.getCell(2, 3).ship).toBeNull(); // Lower side
   });
 });

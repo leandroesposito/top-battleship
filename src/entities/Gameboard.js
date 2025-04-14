@@ -72,4 +72,21 @@ export default class Gameboard {
       isSunk: ship.isSunk(),
     };
   }
+
+  receiveAttack(x, y) {
+    const cell = this.#board[y][x];
+
+    if (cell.hasBeenHit) {
+      return false;
+    }
+
+    cell.hasBeenHit = true;
+
+    if (cell.ship !== null) {
+      cell.ship.hit();
+      return "hit";
+    } else {
+      return "miss";
+    }
+  }
 }

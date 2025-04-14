@@ -81,4 +81,36 @@ describe("Gameboard place ship", () => {
     expect(gameboard.getCell(1, 3).ship).toBeNull(); // Left side
     expect(gameboard.getCell(3, 3).ship).toBeNull(); // Right side
   });
+
+  test("Gameboard ship is placed vertically length 1", () => {
+    const gameboard = new Gameboard(10);
+    gameboard.placeShip(2, 2, 1, false);
+
+    // Ship
+    expect(gameboard.getCell(2, 2).ship).toHaveProperty("isSunk", false);
+
+    // Boundaries
+    expect(gameboard.getCell(2, 1).ship).toBeNull(); // Top of head
+    expect(gameboard.getCell(2, 3).ship).toBeNull(); // Bottom of tail
+    expect(gameboard.getCell(1, 2).ship).toBeNull(); // Left side
+    expect(gameboard.getCell(3, 2).ship).toBeNull(); // Right side
+  });
+
+  test("Gameboard ship is placed vertically length 5", () => {
+    const gameboard = new Gameboard(10);
+    gameboard.placeShip(2, 2, 5, false);
+
+    // Ship
+    expect(gameboard.getCell(2, 2).ship).toHaveProperty("isSunk", false);
+    expect(gameboard.getCell(2, 3).ship).toHaveProperty("isSunk", false);
+    expect(gameboard.getCell(2, 4).ship).toHaveProperty("isSunk", false);
+    expect(gameboard.getCell(2, 5).ship).toHaveProperty("isSunk", false);
+    expect(gameboard.getCell(2, 6).ship).toHaveProperty("isSunk", false);
+
+    // Boundaries
+    expect(gameboard.getCell(2, 1).ship).toBeNull(); // Top of head
+    expect(gameboard.getCell(2, 7).ship).toBeNull(); // Bottom of tail
+    expect(gameboard.getCell(1, 3).ship).toBeNull(); // Left side
+    expect(gameboard.getCell(3, 3).ship).toBeNull(); // Right side
+  });
 });

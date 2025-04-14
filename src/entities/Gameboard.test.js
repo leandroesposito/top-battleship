@@ -116,11 +116,11 @@ describe("Gameboard place ship", () => {
 
   test("Gameboard ship cannot be placed out of bounds", () => {
     const gameboard = new Gameboard(10);
-    expect(() => gameboard.placeShip(0, 0, 3, true));
-    expect(() => gameboard.placeShip(0, 0, 3, false));
-    expect(() => gameboard.placeShip(7, 7, 3, false));
-    expect(() => gameboard.placeShip(7, 9, 3, true));
-    expect(() => gameboard.placeShip(9, 7, 3, false));
+    expect(gameboard.placeShip(0, 0, 3, true));
+    expect(gameboard.placeShip(0, 0, 3, false));
+    expect(gameboard.placeShip(7, 7, 3, false));
+    expect(gameboard.placeShip(7, 9, 3, true));
+    expect(gameboard.placeShip(9, 7, 3, false));
 
     const errorMessage = "Ship placed out of bounds";
 

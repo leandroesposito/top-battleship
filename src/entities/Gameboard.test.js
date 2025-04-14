@@ -1,3 +1,4 @@
+import { experiments } from "webpack";
 import Gameboard from "./Gameboard.js";
 
 test("Gameboard exists", () => {
@@ -145,5 +146,20 @@ describe("Gameboard place ship", () => {
     expect(() => gameboard.placeShip(4, 0, 4, true)).toThrow(errorMessage);
     expect(() => gameboard.placeShip(4, 5, 3, false)).toThrow(errorMessage);
     expect(() => gameboard.placeShip(0, 8, 3, true)).toThrow(errorMessage);
+  });
+});
+
+describe("Gameboard receiveAttack", () => {
+  test("Gameboard receive attack", () => {
+    const gameboard = new Gameboard(10);
+
+    expect(gameboard.receiveAttack(0, 0)).toBeTruthy();
+  });
+
+  test("Gameboard ignore multiple attacks in same spot", () => {
+    const gameboard = new Gameboard(10);
+
+    expect(gameboard.receiveAttack(0, 0)).toBeTruthy();
+    expect(gameboard.receiveAttack(0, 0)).toBeFalsy();
   });
 });

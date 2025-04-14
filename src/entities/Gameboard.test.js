@@ -223,3 +223,26 @@ describe("Gameboard receiveAttack", () => {
     expect(gameboard.getCell(2, 2).ship.isSunk).toBeFalsy();
   });
 });
+
+describe("Gameboard all ships sunk", () => {
+  const gameboard = new Gameboard(10);
+
+  gameboard.placeShip(0, 0, 1, true);
+  gameboard.placeShip(4, 3, 2, true);
+  gameboard.placeShip(2, 2, 1, false);
+
+  expect(gameboard.allShipsSunk()).toBeFalsy();
+
+  gameboard.receiveAttack(0, 0);
+  expect(gameboard.getCell(0, 0).ship.isSunk).toBeTruthy();
+  expect(gameboard.allShipsSunk()).toBeFalsy();
+
+  gameboard.receiveAttack(4, 3);
+  gameboard.receiveAttack(5, 3);
+  expect(gameboard.getCell(4, 3).ship.isSunk).toBeTruthy();
+  expect(gameboard.getCell(5, 3).ship.isSunk).toBeTruthy();
+  expect(gameboard.allShipsSunk()).toBeFalsy();
+
+  gameboard.receiveAttack(2, 2);
+  expect(gameboard.allShipsSunk()).toBeTruthy();
+});

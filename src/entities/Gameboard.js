@@ -27,6 +27,20 @@ export default class Gameboard {
       throw new Error("Ship placed out of bounds");
     }
 
+    if (isHorizontal) {
+      for (let x = origX; x < origX + size; x++) {
+        if (this.#board[origY][x].ship !== null) {
+          throw new Error("Ships cannot overlap");
+        }
+      }
+    } else {
+      for (let y = origY; y < origY + size; y++) {
+        if (this.#board[y][origX].ship !== null) {
+          throw new Error("Ships cannot overlap");
+        }
+      }
+    }
+
     const ship = new Ship(size);
 
     if (isHorizontal) {

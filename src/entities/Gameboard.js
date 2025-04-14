@@ -18,6 +18,15 @@ export default class Gameboard {
   }
 
   placeShip(origX, origY, size, isHorizontal) {
+    if (
+      (isHorizontal && origX + size > this.#width) ||
+      (!isHorizontal && origY + size > this.#height) ||
+      origX < 0 ||
+      origY < 0
+    ) {
+      throw new Error("Ship placed out of bounds");
+    }
+
     const ship = new Ship(size);
 
     if (isHorizontal) {

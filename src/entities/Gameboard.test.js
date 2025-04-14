@@ -183,4 +183,43 @@ describe("Gameboard receiveAttack", () => {
     expect(gameboard.receiveAttack(3, 3)).toBe("miss");
     expect(gameboard.receiveAttack(3, 2)).toBe("miss");
   });
+
+  test("Ship sinks at correct number of hits", () => {
+    const gameboard = new Gameboard(10);
+
+    gameboard.placeShip(0, 0, 1, true);
+    expect(gameboard.getCell(0, 0).ship.isSunk).toBeFalsy();
+    gameboard.receiveAttack(0, 0);
+    expect(gameboard.getCell(0, 0).ship.isSunk).toBeTruthy();
+
+    gameboard.placeShip(4, 3, 2, true);
+    // Hit first spot
+    expect(gameboard.getCell(4, 3).ship.isSunk).toBeFalsy();
+    gameboard.receiveAttack(4, 3);
+    expect(gameboard.getCell(4, 3).ship.isSunk).toBeFalsy();
+
+    // Hit the same spot (should ignore)
+    gameboard.receiveAttack(4, 3);
+    expect(gameboard.getCell(4, 3).ship.isSunk).toBeFalsy();
+
+    // Hit last spot
+    gameboard.receiveAttack(5, 3);
+    // Test first spot to check if different cell reference same ship
+    expect(gameboard.getCell(4, 3).ship.isSunk).toBeTruthy();
+    expect(gameboard.getCell(5, 3).ship.isSunk).toBeTruthy();
+
+    gameboard.placeShip(2, 2, 1, false);
+    // Hit all surrounding cells
+    gameboard.receiveAttack(2, 1);
+    gameboard.receiveAttack(3, 1);
+    gameboard.receiveAttack(3, 2);
+    gameboard.receiveAttack(3, 3);
+    gameboard.receiveAttack(2, 3);
+    gameboard.receiveAttack(1, 3);
+    gameboard.receiveAttack(1, 2);
+    gameboard.receiveAttack(1, 1);
+
+    // Ship should not be sunk
+    expect(gameboard.getCell(2, 2).ship.isSunk).toBeFalsy();
+  });
 });

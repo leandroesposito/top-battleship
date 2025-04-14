@@ -113,4 +113,21 @@ describe("Gameboard place ship", () => {
     expect(gameboard.getCell(1, 3).ship).toBeNull(); // Left side
     expect(gameboard.getCell(3, 3).ship).toBeNull(); // Right side
   });
+
+  test("Gameboard ship cannot be placed out of bounds", () => {
+    const gameboard = new Gameboard(10);
+    expect(() => gameboard.placeShip(0, 0, 3, true));
+    expect(() => gameboard.placeShip(0, 0, 3, false));
+    expect(() => gameboard.placeShip(7, 7, 3, false));
+    expect(() => gameboard.placeShip(7, 9, 3, true));
+    expect(() => gameboard.placeShip(9, 7, 3, false));
+
+    const errorMessage = "Ship placed out of bounds";
+
+    expect(() => gameboard.placeShip(7, 9, 3, false)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(9, 7, 3, true)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(11, 0, 3, true)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(-1, 0, 3, false)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(0, -1, 3, false)).toThrow(errorMessage);
+  });
 });

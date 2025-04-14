@@ -130,4 +130,20 @@ describe("Gameboard place ship", () => {
     expect(() => gameboard.placeShip(-1, 0, 3, false)).toThrow(errorMessage);
     expect(() => gameboard.placeShip(0, -1, 3, false)).toThrow(errorMessage);
   });
+
+  test("Gameboard ships cannot overlap", () => {
+    const gameboard = new Gameboard(10);
+
+    const errorMessage = "Ships cannot overlap";
+
+    expect(() => gameboard.placeShip(0, 0, 3, true)).not.toThrow(errorMessage);
+    expect(() => gameboard.placeShip(7, 0, 3, false)).not.toThrow(errorMessage);
+    expect(() => gameboard.placeShip(2, 3, 6, false)).not.toThrow(errorMessage);
+    expect(() => gameboard.placeShip(4, 7, 5, true)).not.toThrow(errorMessage);
+
+    expect(() => gameboard.placeShip(2, 3, 2, true)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(4, 0, 4, true)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(4, 5, 3, false)).toThrow(errorMessage);
+    expect(() => gameboard.placeShip(0, 8, 3, true)).toThrow(errorMessage);
+  });
 });

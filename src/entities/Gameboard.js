@@ -4,6 +4,7 @@ export default class Gameboard {
   #width;
   #height;
   #board;
+  #ships = new Set();
 
   constructor(width, height) {
     this.#width = width;
@@ -21,6 +22,7 @@ export default class Gameboard {
     this.#validatePosition(origX, origY, size, isHorizontal);
 
     const ship = new Ship(size);
+    this.#ships.add(ship);
 
     if (isHorizontal) {
       for (let x = origX; x < origX + size; x++) {
@@ -88,5 +90,9 @@ export default class Gameboard {
     } else {
       return "miss";
     }
+  }
+
+  allShipsSunk() {
+    return [...this.#ships].every((ship) => ship.isSunk());
   }
 }

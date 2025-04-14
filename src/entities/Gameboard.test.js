@@ -162,4 +162,25 @@ describe("Gameboard receiveAttack", () => {
     expect(gameboard.receiveAttack(0, 0)).toBeTruthy();
     expect(gameboard.receiveAttack(0, 0)).toBeFalsy();
   });
+
+  test("Gameboard register attack result", () => {
+    const gameboard = new Gameboard(10);
+    gameboard.placeShip(0, 0, 1, true);
+    gameboard.placeShip(4, 3, 1, true);
+
+    expect(gameboard.receiveAttack(0, 0)).toBe("hit");
+    expect(gameboard.receiveAttack(0, 1)).toBe("miss");
+    expect(gameboard.receiveAttack(1, 0)).toBe("miss");
+    expect(gameboard.receiveAttack(1, 1)).toBe("miss");
+
+    expect(gameboard.receiveAttack(4, 3)).toBe("hit");
+    expect(gameboard.receiveAttack(4, 2)).toBe("miss");
+    expect(gameboard.receiveAttack(5, 2)).toBe("miss");
+    expect(gameboard.receiveAttack(5, 3)).toBe("miss");
+    expect(gameboard.receiveAttack(5, 4)).toBe("miss");
+    expect(gameboard.receiveAttack(4, 4)).toBe("miss");
+    expect(gameboard.receiveAttack(3, 4)).toBe("miss");
+    expect(gameboard.receiveAttack(3, 3)).toBe("miss");
+    expect(gameboard.receiveAttack(3, 2)).toBe("miss");
+  });
 });

@@ -16,4 +16,17 @@ export default class ComputerPlayer extends Player {
     }
     return attackGameboard;
   }
+
+  getRandomAttack() {
+    if (this.#attacksGameboard.size === 0) {
+      throw new Error("No spaces left to attack");
+    }
+
+    const randomAttack = [...this.#attacksGameboard][
+      Math.floor(Math.random() * this.#attacksGameboard.size)
+    ];
+    this.#attacksGameboard.delete(randomAttack);
+
+    return randomAttack;
+  }
 }

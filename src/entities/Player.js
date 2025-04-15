@@ -14,4 +14,16 @@ export default class Player {
   getGameboard() {
     return this.#gameboard;
   }
+
+  receiveAttack(x, y) {
+    return this.#gameboard.receiveAttack(x, y);
+  }
+
+  placeShip(origX, origY, size, isHorizontal) {
+    return this.#gameboard.placeShip(origX, origY, size, isHorizontal);
+  }
+
+  allShipsSunk() {
+    return this.#gameboard.allShipsSunk();
+  }
 }

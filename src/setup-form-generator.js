@@ -49,5 +49,12 @@ export default function generateSetupForm() {
   isComputerRow.appendChild(isComputerLabel);
   form.appendChild(isComputerRow);
 
+  const buttonRow = createElement("div", "form-row");
+  const button = createElement("button", "button");
+  button.type = "button";
+  button.innerText = "Start Game";
+  buttonRow.appendChild(button);
+  form.appendChild(buttonRow);
+
   return form;
 }

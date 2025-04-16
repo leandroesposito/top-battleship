@@ -28,8 +28,7 @@
   padding: 0.5rem 1rem;
   border: 1px solid var(--font-color);
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
-  background-color: var(--theme-color);
+
   color: var(--font-color);
   font-family: var(--font-family);
 }

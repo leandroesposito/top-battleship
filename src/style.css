@@ -15,6 +15,15 @@ body {
   font-family: var(--font-family);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 #root {
   min-height: 100vh;
   display: flex;
@@ -48,7 +57,6 @@ header .icon-container {
 }
 
 header h1 {
-  margin: 0;
   font-size: 2rem;
 }
 

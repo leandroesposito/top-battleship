@@ -1,0 +1,29 @@
+:root {
+  --ship-color: rgb(53, 188, 233);
+  --hit-color: rgb(255, 71, 71);
+  --miss-color: gray;
+}
+
+.gameboard {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(10, 5vmin);
+  grid-template-rows: repeat(10, 5vmin);
+}
+
+.cell {
+  box-sizing: border-box;
+  border: 1px solid #000000;
+}
+
+.ship {
+  background-color: var(--ship-color);
+}
+
+.ship.hit {
+  background-color: var(--hit-color);
+}
+
+.hit {
+  background-color: var(--miss-color);
+}

@@ -19,7 +19,10 @@ export default class Gameboard {
   }
 
   placeShip(origX, origY, size, isHorizontal) {
-    this.#validatePosition(origX, origY, size, isHorizontal);
+    const result = this.#validatePosition(origX, origY, size, isHorizontal);
+    if (result instanceof Error) {
+      return result;
+    }
 
     const ship = new Ship(size);
     this.#ships.add(ship);
@@ -33,6 +36,8 @@ export default class Gameboard {
         this.#board[y][origX].ship = ship;
       }
     }
+
+    return "Success";
   }
 
   #validatePosition(origX, origY, size, isHorizontal) {
@@ -42,20 +47,15 @@ export default class Gameboard {
       origX < 0 ||
       origY < 0
     ) {
-      throw new Error("Ship placed out of bounds");
+      return new Error("Ship placed out of bounds");
     }
 
-    if (isHorizontal) {
-      for (let x = origX; x < origX + size; x++) {
-        if (this.#board[origY][x].ship !== null) {
-          throw new Error("Ships cannot overlap");
-        }
-      }
-    } else {
-      for (let y = origY; y < origY + size; y++) {
-        if (this.#board[y][origX].ship !== null) {
-          throw new Error("Ships cannot overlap");
-        }
+    for (let i = 0; i < size; i++) {
+      const col = isHorizontal ? origX + i : origX;
+      const row = isHorizontal ? origY : origY + i;
+
+      if (this.#board[row][col].ship !== null) {
+        return new Error("Ships cannot overlap");
       }
     }
   }

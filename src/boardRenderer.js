@@ -12,6 +12,9 @@ export default function generateBoard(gameboard) {
       cell.dataset.y = y;
       if (cellData.ship === null) {
         cell.classList.add("ship");
+        if (cellData.ship.isSunk) {
+          cell.classList.add("sunk");
+        }
       }
       if (cellData.hastBeenHit === true) {
         cell.classList.add("hit");

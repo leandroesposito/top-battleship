@@ -95,4 +95,33 @@ export default class Gameboard {
   allShipsSunk() {
     return [...this.#ships].every((ship) => ship.isSunk());
   }
+
+  generateRandomBoard(shipsSizes, boardWidth, boardHeight) {
+    const board = new Gameboard(boardWidth, boardHeight);
+    const maxAttempts = 100;
+
+    for (const shipSize of shipsSizes) {
+      let attempts = 0;
+      let placed = false;
+
+      while (!placed && attempts < maxAttempts) {
+        attempts++;
+
+        const x = Math.floor(Math.random() * boardSize);
+        const y = Math.floor(Math.random() * boardSize);
+        const isHorizontal = Math.random() < 0.5;
+
+        if (board.placeShip(x, y, shipSize, isHorizontal) === "Success") {
+          placed = true;
+        }
+      }
+
+      // if the ship cannot be placed, generate a new board
+      if (!placed) {
+        return generateRandomBoard(boardSize, shipsSizes);
+      }
+    }
+
+    return board;
+  }
 }

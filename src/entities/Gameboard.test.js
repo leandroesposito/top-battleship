@@ -118,34 +118,67 @@ describe("Gameboard place ship", () => {
   test("Gameboard ship cannot be placed out of bounds", () => {
     const gameboard = new Gameboard(10);
     const errorMessage = "Ship placed out of bounds";
+    const successMessage = "Success";
 
-    expect(() => gameboard.placeShip(0, 0, 3, true)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(0, 0, 3, false)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(7, 7, 3, false)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(7, 9, 3, true)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(9, 7, 3, false)).not.toThrow(errorMessage);
+    expect(gameboard.placeShip(0, 0, 3, true)).toBe(successMessage);
+    expect(gameboard.placeShip(4, 0, 3, false)).toBe(successMessage);
+    expect(gameboard.placeShip(7, 7, 3, false)).toBe(successMessage);
+    expect(gameboard.placeShip(8, 9, 2, true)).toBe(successMessage);
+    expect(gameboard.placeShip(5, 7, 3, false)).toBe(successMessage);
 
-    expect(() => gameboard.placeShip(7, 9, 3, false)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(9, 7, 3, true)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(11, 0, 3, true)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(-1, 0, 3, false)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(0, -1, 3, false)).toThrow(errorMessage);
+    let placeResult;
+
+    placeResult = gameboard.placeShip(7, 9, 3, false);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(9, 7, 3, true);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(11, 0, 3, true);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(-1, 0, 3, false);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(0, -1, 3, false);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
   });
 
   test("Gameboard ships cannot overlap", () => {
     const gameboard = new Gameboard(10);
 
     const errorMessage = "Ships cannot overlap";
+    const successMessage = "Success";
 
-    expect(() => gameboard.placeShip(0, 0, 3, true)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(7, 0, 3, false)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(2, 3, 6, false)).not.toThrow(errorMessage);
-    expect(() => gameboard.placeShip(4, 7, 5, true)).not.toThrow(errorMessage);
+    expect(gameboard.placeShip(0, 0, 3, true)).toBe(successMessage);
+    expect(gameboard.placeShip(7, 0, 3, false)).toBe(successMessage);
+    expect(gameboard.placeShip(2, 3, 6, false)).toBe(successMessage);
+    expect(gameboard.placeShip(4, 7, 5, true)).toBe(successMessage);
 
-    expect(() => gameboard.placeShip(2, 3, 2, true)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(4, 0, 4, true)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(4, 5, 3, false)).toThrow(errorMessage);
-    expect(() => gameboard.placeShip(0, 8, 3, true)).toThrow(errorMessage);
+    let placeResult;
+
+    placeResult = gameboard.placeShip(2, 3, 2, true);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(4, 0, 4, true);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(4, 5, 3, false);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
+    placeResult = gameboard.placeShip(0, 8, 3, true);
+    expect(
+      placeResult instanceof Error && placeResult.message === errorMessage,
+    ).toBeTruthy();
   });
 });
 

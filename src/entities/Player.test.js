@@ -41,8 +41,8 @@ test("Player receive attack hit", () => {
 
 test("Player place ship", () => {
   const player = new Player("Player 1", new Gameboard(10));
-  expect(() => player.placeShip(0, 0, 1, true)).not.toThrow();
-  expect(() => player.placeShip(0, 0, 1, true)).toThrow();
+  expect(player.placeShip(0, 0, 1, true) instanceof Error).toBeFalsy();
+  expect(player.placeShip(0, 0, 1, true) instanceof Error).toBeTruthy();
 });
 
 test("Player all ships sunk", () => {

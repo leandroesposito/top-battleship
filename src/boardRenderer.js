@@ -1,4 +1,4 @@
-import createElement from "./htmlGenerators.js";
+import { createElement } from "./htmlGenerators.js";
 
 export default function generateBoard(gameboard) {
   const boardElement = createElement("div", "gameboard");

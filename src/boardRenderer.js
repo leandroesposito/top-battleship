@@ -15,7 +15,7 @@ export default function generateBoard(gameboard) {
           cell.classList.add("sunk");
         }
       }
-      if (cellData.hastBeenHit === true) {
+      if (cellData.hasBeenHit === true) {
         cell.classList.add("hit");
       }
 

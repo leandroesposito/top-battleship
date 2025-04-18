@@ -2,11 +2,10 @@ import { createElement } from "./htmlGenerators.js";
 
 export default function generateBoard(gameboard) {
   const boardElement = createElement("div", "gameboard");
-  const board = gameboard.getBoard();
 
-  for (let y = 0; y < board.length; y++) {
-    for (let x = 0; x < board[y].length; x++) {
-      const cellData = board[y][x];
+  for (let y = 0; y < gameboard.getHeight(); y++) {
+    for (let x = 0; x < gameboard.getWidth(); x++) {
+      const cellData = gameboard.getCell(x, y);
       const cell = createElement("div", "cell");
       cell.dataset.x = x;
       cell.dataset.y = y;

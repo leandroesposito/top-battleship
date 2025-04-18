@@ -9,6 +9,10 @@ export default class Game {
     return this.currentPlayer;
   }
 
+  getOpponentPlayer() {
+    return this.currentPlayer === this.player1 ? this.player2 : this.player1;
+  }
+
   attack(x, y) {
     if (this.currentPlayer.allShipsSunk()) {
       return false;

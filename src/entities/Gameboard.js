@@ -14,6 +14,14 @@ export default class Gameboard {
     );
   }
 
+  getHeight() {
+    return this.#height;
+  }
+
+  getWidth() {
+    return this.#width;
+  }
+
   getBoard() {
     return JSON.parse(JSON.stringify(this.#board));
   }

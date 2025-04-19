@@ -32,8 +32,8 @@ import initGame from "./gameController.js";
   console.log(g2.receiveAttack(2, 2));
   console.log(g2.receiveAttack(7, 6));
 
-  const player1 = new Player("Player 1", g1);
-  const player2 = new Player("Player 2", g2);
+  const player1 = new Player("John", g1);
+  const player2 = new Player("Jane", g2);
 
   const game = initGame(player1, player2);
   // loadContent(generateSetupForm);

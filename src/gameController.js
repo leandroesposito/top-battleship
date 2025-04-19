@@ -9,9 +9,6 @@ export default function initGame(player1, player2) {
     gameContainer.appendChild(
       generateTurn(game.getCurrentPlayer(), game.getOpponentPlayer()),
     );
-
-    const button = document.querySelector(".continue");
-    button.addEventListener("click", handleTurnEnd);
   }
 
   function renderGameTemplate() {

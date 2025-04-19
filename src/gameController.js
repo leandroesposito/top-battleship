@@ -9,6 +9,9 @@ export default function initGame(player1, player2) {
     gameContainer.appendChild(
       generateTurn(game.getCurrentPlayer(), game.getOpponentPlayer()),
     );
+
+    const h1 = document.querySelector(".game h1");
+    h1.textContent = game.getCurrentPlayer().getName() + " turn";
   }
 
   function renderGameTemplate() {

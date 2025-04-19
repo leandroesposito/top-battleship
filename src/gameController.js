@@ -1,6 +1,7 @@
 import Game from "./entities/Game.js";
 import { createElement } from "./htmlGenerators";
 import generateTurn from "./turnRenderer.js";
+import generateBoard from "./boardRenderer.js";
 
 export default function initGame(player1, player2) {
   function initTurn() {
@@ -10,9 +11,40 @@ export default function initGame(player1, player2) {
       generateTurn(game.getCurrentPlayer(), game.getOpponentPlayer()),
     );
 
+    const opponentBoardContainer = document.querySelector(
+      ".opponent .gameboard",
+    );
+    opponentBoardContainer.addEventListener("click", handleGameboardClick);
+
     const h1 = document.querySelector(".game h1");
     h1.textContent = game.getCurrentPlayer().getName() + " turn";
   }
+
+  const handleGameboardClick = (event) => {
+    console.log(event);
+    const cellElement = event.target;
+    if (!cellElement.classList.contains("cell")) {
+      return;
+    }
+
+    const x = cellElement.dataset.x;
+    const y = cellElement.dataset.y;
+    const opponent = game.getOpponentPlayer();
+    const opponentGameboard = opponent.getGameboard();
+    const cell = opponentGameboard.getCell(x, y);
+    if (cell.hasBeenHit === false) {
+      const attackResult = opponent.receiveAttack(x, y);
+      if (attackResult !== false) {
+        const opponentBoardContainer = document.querySelector(
+          ".opponent .gameboard",
+        );
+        opponentBoardContainer.innerHTML = "";
+        opponentBoardContainer.appendChild(
+          generateBoard(opponentGameboard, true),
+        );
+      }
+    }
+  };
 
   function renderGameTemplate() {
     const main = document.querySelector("main");

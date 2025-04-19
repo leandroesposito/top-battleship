@@ -14,7 +14,11 @@ export default function generateTurn(currentPlayer, opponent) {
   currentGameboardContainer.appendChild(currentGameboard);
   currentPlayerContainer.appendChild(currentGameboardContainer);
 
-  const opponentContainer = createElement("div", "player-container");
+  const opponentContainer = createElement(
+    "div",
+    "player-container",
+    "opponent",
+  );
   const opponentTitle = createElement("h2");
   opponentTitle.innerText = "Opponent board";
   opponentContainer.appendChild(opponentTitle);

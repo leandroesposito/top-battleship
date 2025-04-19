@@ -42,6 +42,11 @@ export default function initGame(player1, player2) {
         opponentBoardContainer.appendChild(
           generateBoard(opponentGameboard, true),
         );
+
+        opponentBoardContainer.removeEventListener(
+          "click",
+          handleGameboardClick,
+        );
       }
     }
   };

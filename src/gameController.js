@@ -36,7 +36,7 @@ export default function initGame(player1, player2) {
     const main = document.querySelector("main");
     main.innerHTML = "";
     const h1 = createElement("h1");
-    h1.textContent("Pass the screen to " + game.getCurrentPlayer().getName());
+    h1.textContent = "Pass the screen to " + game.getCurrentPlayer().getName();
     main.appendChild(h1);
   }
 

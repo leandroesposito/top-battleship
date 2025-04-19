@@ -33,11 +33,10 @@ export default function initGame(player1, player2) {
     }
 
     button.dataset.switchPlayer = "true";
-    const main = document.querySelector("main");
-    main.innerHTML = "";
-    const h1 = createElement("h1");
+    const gameContainer = document.querySelector(".game-container");
+    gameContainer.innerHTML = "";
+    const h1 = document.querySelector(".game h1");
     h1.textContent = "Pass the screen to " + game.getCurrentPlayer().getName();
-    main.appendChild(h1);
   }
 
   function generateGameTemplate() {

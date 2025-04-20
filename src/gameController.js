@@ -35,21 +35,23 @@ export default function initGame(player1, player2) {
     if (cell.hasBeenHit === false) {
       const attackResult = game.attack(x, y);
       if (attackResult !== false) {
-        const opponentBoardContainer = document.querySelector(
-          ".opponent .gameboard",
-        );
-        opponentBoardContainer.innerHTML = "";
-        opponentBoardContainer.appendChild(
-          generateBoard(opponentGameboard, true),
-        );
-
-        opponentBoardContainer.removeEventListener(
-          "click",
-          handleGameboardClick,
-        );
+        finishTurn();
       }
     }
   };
+
+  function finishTurn() {
+    const opponentBoardContainer = document.querySelector(
+      ".opponent .gameboard",
+    );
+    opponentBoardContainer.innerHTML = "";
+    opponentBoardContainer.appendChild(
+      generateBoard(game.getOpponentPlayer().getGameboard(), true),
+    );
+
+    opponentBoardContainer.removeEventListener("click", handleGameboardClick);
+
+  }
 
   function renderGameTemplate() {
     const main = document.querySelector("main");

@@ -81,7 +81,7 @@ export default function initGame(player1, player2) {
     const gameContainer = document.querySelector(".game-container");
     gameContainer.innerHTML = "";
     const h1 = document.querySelector(".game h1");
-    h1.textContent = "Pass the screen to " + game.getCurrentPlayer().getName();
+    h1.textContent = "Pass the screen to " + game.getOpponentPlayer().getName();
   }
 
   function generateGameTemplate() {

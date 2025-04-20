@@ -75,6 +75,7 @@ export default function initGame(player1, player2) {
     if (switchPlayer) {
       game.switchPlayer();
       initTurn();
+      return;
     }
 
     button.dataset.switchPlayer = "true";

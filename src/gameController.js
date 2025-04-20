@@ -33,7 +33,7 @@ export default function initGame(player1, player2) {
     const opponentGameboard = opponent.getGameboard();
     const cell = opponentGameboard.getCell(x, y);
     if (cell.hasBeenHit === false) {
-      const attackResult = opponent.receiveAttack(x, y);
+      const attackResult = game.attack(x, y);
       if (attackResult !== false) {
         const opponentBoardContainer = document.querySelector(
           ".opponent .gameboard",

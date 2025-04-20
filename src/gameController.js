@@ -11,6 +11,10 @@ export default function initGame(player1, player2) {
       generateTurn(game.getCurrentPlayer(), game.getOpponentPlayer()),
     );
 
+    const button = document.querySelector(".continue");
+    button.dataset.switchPlayer = "false";
+    button.disabled = true;
+
     const opponentBoardContainer = document.querySelector(
       ".opponent .gameboard",
     );
@@ -51,6 +55,8 @@ export default function initGame(player1, player2) {
 
     opponentBoardContainer.removeEventListener("click", handleGameboardClick);
 
+    const button = document.querySelector(".continue");
+    button.disabled = false;
   }
 
   function renderGameTemplate() {

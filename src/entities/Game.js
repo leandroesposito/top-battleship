@@ -14,19 +14,10 @@ export default class Game {
   }
 
   attack(x, y) {
-    if (this.currentPlayer.allShipsSunk()) {
-      return false;
-    }
-
-    const attackResult = this.currentPlayer.receiveAttack(x, y);
-    if (attackResult && !this.currentPlayer.allShipsSunk()) {
-      this.#switchPlayer(attackResult);
-    }
-
-    return attackResult;
+    return this.getOpponentPlayer().receiveAttack(x, y);
   }
 
-  #switchPlayer() {
+  switchPlayer() {
     if (this.currentPlayer === this.player1) {
       this.currentPlayer = this.player2;
     } else {

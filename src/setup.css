@@ -8,7 +8,7 @@
   margin: 0;
 }
 
-.form-row {
+#setup-game-form .form-row {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;

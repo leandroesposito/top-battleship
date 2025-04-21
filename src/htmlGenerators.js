@@ -15,9 +15,10 @@ export function createShipPlacer(shipSize, boardSize) {
   const xCoordRow = createElement("div", "coord-row", "form-row");
   xCoordRow.appendChild(
     createLabelWithInput("X", "number", "x-coord", "x-coord", {
-      min: 0,
-      max: boardSize - 1,
+      min: 1,
+      max: boardSize,
       step: 1,
+      required: true,
     }),
   );
   container.appendChild(xCoordRow);
@@ -25,9 +26,10 @@ export function createShipPlacer(shipSize, boardSize) {
   const yCoordRow = createElement("div", "coord-row", "form-row");
   yCoordRow.appendChild(
     createLabelWithInput("Y", "number", "y-coord", "y-coord", {
-      min: 0,
-      max: boardSize - 1,
+      min: 1,
+      max: boardSize,
       step: 1,
+      required: true,
     }),
   );
   container.appendChild(yCoordRow);

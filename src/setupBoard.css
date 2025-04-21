@@ -79,6 +79,10 @@ place-ship-button
   flex-basis: 6rem;
 }
 
+.setup-board-form input.invalid {
+  border-color: red;
+}
+
 .error-message {
   position: absolute;
   bottom: 0;

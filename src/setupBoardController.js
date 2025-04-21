@@ -10,11 +10,14 @@ export default function initSetupBoard(playerName, boardSize) {
   }
 
   function addInputListeners() {
-    console.log("addInputListeners");
-    const inputs = document.querySelectorAll("input[type=number]");
+    const inputs = document.querySelectorAll("input");
     inputs.forEach((input) => {
-      input.addEventListener("focusin", clearInvalidStatus);
-      input.addEventListener("focusout", validateInput);
+      input.addEventListener("focusin", (event) =>
+        clearInvalidStatus(event.target),
+      );
+      input.addEventListener("focusout", (event) =>
+        validateInput(event.target),
+      );
     });
   }
 
@@ -23,11 +26,9 @@ export default function initSetupBoard(playerName, boardSize) {
     input.classList.remove("invalid");
   }
 
-  function validateInput(event) {
-    console.log("validateInput");
-    const fieldset = event.target.closest("fieldset");
-    const inputs = [event.target];
-    const errorMessage = fieldset.querySelector(".error-message");
+  function validateInput(input, showError = true) {
+    const fieldset = input.closest("fieldset");
+    const inputs = [input];
 
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];

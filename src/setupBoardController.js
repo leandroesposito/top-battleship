@@ -55,6 +55,8 @@ export default function initSetupBoard(playerName, boardSize) {
           input.classList.add("invalid");
         }
         return false;
+      } else {
+        clearInvalidStatus(input);
       }
     }
 

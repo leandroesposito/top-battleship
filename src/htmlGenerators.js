@@ -33,6 +33,12 @@ export function createShipPlacer(shipSize, boardSize) {
   container.appendChild(yCoordRow);
 
   const orientationRow = createElement("div", "orientation-row", "form-row");
+
+  const orientationLabel = createElement("label");
+  orientationLabel.for = "orientation-select";
+  orientationLabel.textContent = "Pos.";
+  orientationRow.appendChild(orientationLabel);
+
   const orientationSelect = createElement("select", "orientation-select");
   orientationSelect.id = "orientation-select";
   orientationSelect.name = "orientation-select";

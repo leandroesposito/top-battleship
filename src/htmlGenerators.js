@@ -8,7 +8,8 @@ export function createShipPlacer(shipSize, boardSize) {
   const container = document.createDocumentFragment();
 
   const button = createElement("button", "place-ship-button");
-  button.textContent = "Place using board";
+  button.textContent = "Place clicking board";
+  button.type = "button";
   container.appendChild(button);
 
   const xCoordRow = createElement("div", "coord-row", "form-row");

@@ -2,7 +2,7 @@ import { createElement, createShipPlacer } from "./htmlGenerators.js";
 import { shipSizes } from "./shipSizes.js";
 
 export default function generateSetupBoardForm(playerName, boardSize) {
-  const container = document.createDocumentFragment();
+  const container = createElement("div", "setup-board");
 
   const h1 = createElement("h1");
   h1.textContent = playerName + " place your ships!";
@@ -14,7 +14,7 @@ export default function generateSetupBoardForm(playerName, boardSize) {
   const boardContainer = createElement("div", "board-container");
   panels.appendChild(boardContainer);
 
-  const formContainer = createElement("div", "form-container");
+  const formContainer = createElement("div", "setup-board-form-container");
   panels.appendChild(formContainer);
 
   const form = createElement("form", "setup-board-form");

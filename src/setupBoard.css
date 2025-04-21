@@ -1,0 +1,120 @@
+/*
+TODO
+place-ship-button
+.error-message
+*/
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50vmin, 1fr));
+  gap: 1rem;
+}
+
+.form-container {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.setup-board-form-container {
+  display: grid;
+  gap: 1rem;
+}
+
+.setup-board-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.setup-board-form fieldset {
+  padding: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--font-color);
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.setup-board h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.place-ship-button {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.setup-board-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.setup-board-form label {
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+  flex-basis: 2rem;
+}
+
+.setup-board-form input,
+.setup-board-form select {
+  width: 4rem;
+  flex: 1;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--font-color);
+  border-radius: 0.5rem;
+  color: var(--font-color);
+  font-family: var(--font-family);
+}
+
+.setup-board-form select {
+  flex-basis: 6rem;
+}
+
+.error-message {
+  position: absolute;
+  bottom: 0;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: red;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid red;
+  font-weight: 600;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: all 0.2s ease-in-out;
+}
+.error-message:not(:empty) {
+  transform: scaleY(1);
+}
+
+.setup-board-form-container > button {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px black;
+  background-color: var(--theme-color);
+  color: var(--font-color);
+  font-family: var(--font-family);
+  margin: auto;
+  cursor: pointer;
+}
+
+.setup-board-form-container > button:active {
+  translate: 5px 5px;
+  box-shadow: none;
+}

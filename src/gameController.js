@@ -14,6 +14,7 @@ export default function initGame(player1, player2) {
     const button = document.querySelector(".continue");
     button.dataset.switchPlayer = "false";
     button.disabled = true;
+    button.textContent = "End turn";
 
     const opponentBoardContainer = document.querySelector(
       ".opponent .gameboard",
@@ -90,6 +91,7 @@ export default function initGame(player1, player2) {
     }
 
     button.dataset.switchPlayer = "true";
+    button.textContent = "Start turn";
     const gameContainer = document.querySelector(".game-container");
     gameContainer.innerHTML = "";
     const h1 = document.querySelector(".game h1");

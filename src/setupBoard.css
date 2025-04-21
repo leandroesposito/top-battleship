@@ -122,3 +122,14 @@ place-ship-button
   translate: 5px 5px;
   box-shadow: none;
 }
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.gameboard {
+  position: sticky;
+  top: 25vh;
+}

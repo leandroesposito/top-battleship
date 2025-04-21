@@ -18,11 +18,40 @@ export default function initSetupBoard(playerName, boardSize) {
       input.addEventListener("focusout", (event) =>
         validateInput(event.target),
       );
+      input.addEventListener("input", handleValueChange);
     });
   }
 
-  function clearInvalidStatus(event) {
-    const input = event.target;
+  function handleValueChange(event) {
+    const fielsets = document.querySelectorAll("fieldset");
+    gameboard = new Gameboard(boardSize);
+
+    for (let i = 0; i < fielsets.length; i++) {
+      const fieldset = fielsets[i];
+      const inputs = fieldset.querySelectorAll("input");
+      for (let j = 0; j < inputs.length; j++) {
+        if (!validateInput(inputs[j], false)) {
+          continue;
+        }
+      }
+
+      const placementResult = gameboard.placeShip(
+        Number(inputs[0].dataset.x - 1),
+        Number(inputs[0].dataset.y - 1),
+        Number(inputs[0].dataset.size),
+        inputs[0].dataset.horizontal === "true",
+      );
+
+      if (placementResult !== "Success") {
+        setFieldsetError(fieldset, placementResult);
+        break;
+      }
+    }
+
+    renderBoard(gameboard, gameboardPreview);
+  }
+
+  function clearInvalidStatus(input) {
     input.classList.remove("invalid");
   }
 
@@ -94,7 +123,7 @@ export default function initSetupBoard(playerName, boardSize) {
   renderSetupBoardForm(playerName, boardSize);
   addInputListeners();
 
-  const gameboard = new Gameboard(boardSize);
+  let gameboard = new Gameboard(boardSize);
   const gameboardPreview = document.querySelector(".board-container");
 
   renderBoard(gameboard, gameboardPreview);

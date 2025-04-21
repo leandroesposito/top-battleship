@@ -56,7 +56,7 @@ export function createShipPlacer(shipSize, boardSize) {
   shipSizeInput.value = shipSize;
   container.appendChild(shipSizeInput);
 
-  container.appendChild(createElement("div", ".error-message"));
+  container.appendChild(createElement("div", "error-message"));
 
   return container;
 }

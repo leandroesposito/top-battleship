@@ -2,6 +2,7 @@ import "./style.css";
 import "./setup.css";
 import "./game.css";
 import "./gameboard.css";
+import "./setupBoard.css";
 
 import Player from "./entities/Player.js";
 import GameBoard from "./entities/Gameboard.js";
@@ -10,6 +11,8 @@ import initGame from "./gameController.js";
 
 import generateSetupBoardForm from "./setupBoardFormRenderer.js";
 
+import initSetupBoard from "./setupBoardController.js";
+
 (function init() {
   function loadContent(functionGenerator) {
     const main = document.querySelector("main");
@@ -17,5 +20,5 @@ import generateSetupBoardForm from "./setupBoardFormRenderer.js";
     main.appendChild(functionGenerator());
   }
 
-  loadContent(generateSetupBoardForm);
+  initSetupBoard("john", 10);
 })();

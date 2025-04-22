@@ -27,12 +27,12 @@ export default function initSetupBoard(playerName, boardSize) {
     const fielsets = document.querySelectorAll("fieldset");
     gameboard = new Gameboard(boardSize);
 
-    for (let i = 0; i < fielsets.length; i++) {
+    fieldsets: for (let i = 0; i < fielsets.length; i++) {
       const fieldset = fielsets[i];
       const inputs = fieldset.querySelectorAll("input");
       for (let j = 0; j < inputs.length; j++) {
         if (!validateInput(inputs[j], false)) {
-          continue;
+          continue fieldsets;
         }
       }
 

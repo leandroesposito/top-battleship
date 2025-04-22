@@ -21,6 +21,11 @@ export default function initSetupBoard(playerName, boardSize) {
       input.addEventListener("input", (event) => validateInput(event.target));
       input.addEventListener("input", handleValueChange);
     });
+
+    const selects = document.querySelectorAll("select");
+    selects.forEach((select) => {
+      select.addEventListener("change", handleValueChange);
+    });
   }
 
   function handleValueChange(event) {

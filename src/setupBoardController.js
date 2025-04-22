@@ -49,7 +49,6 @@ export default function initSetupBoard(playerName, boardSize) {
 
       if (placementResult !== "Success") {
         setFieldsetError(fieldset, placementResult);
-        break;
       }
     }
 

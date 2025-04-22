@@ -25,6 +25,7 @@ export default function initSetupBoard(playerName, boardSize) {
   function handleValueChange(event) {
     const fielsets = document.querySelectorAll("fieldset");
     gameboard = new Gameboard(boardSize);
+    let isValidBoard = true;
 
     fieldsets: for (let i = 0; i < fielsets.length; i++) {
       const fieldset = fielsets[i];
@@ -49,12 +50,14 @@ export default function initSetupBoard(playerName, boardSize) {
 
       if (placementResult !== "Success") {
         setFieldsetError(fieldset, placementResult);
+        isValidBoard = false;
       } else {
         setFieldsetError(fieldset, "");
       }
     }
 
     renderBoard(gameboard, gameboardPreview);
+    return isValidBoard;
   }
 
   function clearInvalidStatus(input) {

@@ -34,5 +34,5 @@
 }
 
 .gameboard.highlight-hover .cell.dragging-over {
-  background-color: green;
+  background-color: var(--ship-color);
 }

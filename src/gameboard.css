@@ -32,3 +32,7 @@
 .hit {
   background-color: var(--miss-color);
 }
+
+.gameboard.highlight-hover .cell.dragging-over {
+  background-color: green;
+}

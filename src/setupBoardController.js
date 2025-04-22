@@ -12,12 +12,6 @@ export default function initSetupBoard(playerName, boardSize) {
   function addInputListeners() {
     const inputs = document.querySelectorAll("input");
     inputs.forEach((input) => {
-      input.addEventListener("focusin", (event) =>
-        clearInvalidStatus(event.target),
-      );
-      input.addEventListener("focusout", (event) =>
-        validateInput(event.target),
-      );
       input.addEventListener("input", (event) => validateInput(event.target));
       input.addEventListener("input", handleValueChange);
     });

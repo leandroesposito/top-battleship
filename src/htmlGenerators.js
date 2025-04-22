@@ -56,6 +56,7 @@ export function createShipPlacer(shipSize, boardSize) {
   const shipSizeInput = createElement("input");
   shipSizeInput.type = "hidden";
   shipSizeInput.value = shipSize;
+  shipSizeInput.name = "ship-size";
   container.appendChild(shipSizeInput);
 
   container.appendChild(createElement("div", "error-message"));

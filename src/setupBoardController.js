@@ -35,11 +35,16 @@ export default function initSetupBoard(playerName, boardSize) {
         }
       }
 
+      const x = Number(fieldset.querySelector('[name="x-coord"]').value - 1);
+      const y = Number(fieldset.querySelector('[name="y-coord"]').value - 1);
+      const size = Number(fieldset.querySelector('[name="ship-size"]').value);
+      const orientation = fieldset.querySelector('[name="orientation"]').value;
+
       const placementResult = gameboard.placeShip(
-        Number(inputs[0].dataset.x - 1),
-        Number(inputs[0].dataset.y - 1),
-        Number(inputs[0].dataset.size),
-        inputs[0].dataset.horizontal === "true",
+        x,
+        y,
+        size,
+        orientation === "horizontal",
       );
 
       if (placementResult !== "Success") {

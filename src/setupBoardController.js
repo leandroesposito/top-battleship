@@ -18,6 +18,7 @@ export default function initSetupBoard(playerName, boardSize) {
       input.addEventListener("focusout", (event) =>
         validateInput(event.target),
       );
+      input.addEventListener("input", (event) => validateInput(event.target));
       input.addEventListener("input", handleValueChange);
     });
   }

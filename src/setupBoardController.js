@@ -27,13 +27,11 @@ export default function initSetupBoard(playerName, boardSize) {
     gameboard = new Gameboard(boardSize);
     let isValidBoard = true;
 
-    fieldsets: for (let i = 0; i < fielsets.length; i++) {
+    for (let i = 0; i < fielsets.length; i++) {
       const fieldset = fielsets[i];
-      const inputs = fieldset.querySelectorAll("input");
-      for (let j = 0; j < inputs.length; j++) {
-        if (!validateInput(inputs[j], false)) {
-          continue fieldsets;
-        }
+      if (!fieldsetIsValid(fieldset)) {
+        isValidBoard = false;
+        continue;
       }
 
       const x = Number(fieldset.querySelector('[name="x-coord"]').value - 1);

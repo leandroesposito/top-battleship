@@ -22,6 +22,54 @@ export default function initSetupBoard(playerName, boardSize) {
     });
   }
 
+  function addDraggableButtonsListeners() {
+    const buttons = document.querySelectorAll(".place-ship-button");
+    buttons.forEach((button) => {
+      button.addEventListener("dragstart", handleDragStart);
+      button.addEventListener("dragend", handleDragEnd);
+    });
+  }
+
+  function addCellsDropListeners() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach((cell) => {
+      cell.addEventListener("dragover", preventEvent);
+      // cell.addEventListener("dragenter", preventEvent);
+      cell.addEventListener("drop", handleDrop);
+    });
+  }
+
+  function handleDragStart(event) {
+    const gameboardElement = gameboardPreview.querySelector(".gameboard");
+    gameboardElement.classList.add("highlight-hover");
+    draggedButton = event.target;
+  }
+
+  function handleDragEnd(event) {
+    const gameboardElement = gameboardPreview.querySelector(".gameboard");
+    gameboardElement.classList.remove("highlight-hover");
+  }
+
+  function preventEvent(event) {
+    event.preventDefault();
+  }
+
+  function handleDrop(event) {
+    event.preventDefault();
+    const cell = event.target;
+    if (cell.classList.contains("cell") && draggedButton !== null) {
+      const fieldset = draggedButton.closest("fieldset");
+      const xInput = fieldset.querySelector('[name="x-coord"]');
+      const yInput = fieldset.querySelector('[name="y-coord"]');
+
+      xInput.value = parseInt(cell.dataset.x) + 1;
+      yInput.value = parseInt(cell.dataset.y) + 1;
+      handleValueChange();
+    }
+
+    gameboardPreview.classList.remove("highlight-hover");
+  }
+
   function handleValueChange(event) {
     const fielsets = document.querySelectorAll("fieldset");
     gameboard = new Gameboard(boardSize);
@@ -117,11 +165,15 @@ export default function initSetupBoard(playerName, boardSize) {
     const boardElement = generateBoard(gameboard);
     container.innerHTML = "";
     container.appendChild(boardElement);
+
+    addCellsDropListeners();
   }
 
   renderSetupBoardForm(playerName, boardSize);
   addInputListeners();
+  addDraggableButtonsListeners();
 
+  let draggedButton = null;
   let gameboard = new Gameboard(boardSize);
   const gameboardPreview = document.querySelector(".board-container");
 

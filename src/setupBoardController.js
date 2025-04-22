@@ -34,12 +34,24 @@ export default function initSetupBoard(playerName, boardSize) {
     const cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
       cell.addEventListener("dragover", preventEvent);
-      // cell.addEventListener("dragenter", preventEvent);
+      cell.addEventListener("dragenter", handleDragEnter);
+      cell.addEventListener("dragleave", handleDragLeave);
       cell.addEventListener("drop", handleDrop);
     });
   }
 
+  function handleDragEnter(event) {
+    event.target.classList.add("dragging-over");
+    event.preventDefault();
+  }
+
+  function handleDragLeave(event) {
+    event.target.classList.remove("dragging-over");
+    event.preventDefault();
+  }
+
   function handleDragStart(event) {
+    event.target.classList.add("dragging");
     const gameboardElement = gameboardPreview.querySelector(".gameboard");
     gameboardElement.classList.add("highlight-hover");
     draggedButton = event.target;

@@ -57,36 +57,28 @@ export default function initSetupBoard(playerName, boardSize) {
 
   function validateInput(input, showError = true) {
     const fieldset = input.closest("fieldset");
-    const inputs = [input];
     let errorMessage = "";
+    let isValid = true;
 
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
-      let isValid = true;
+    if (input.validity.valueMissing) {
+      errorMessage = "This field is required.";
+      isValid = false;
+    } else if (input.validity.rangeOverflow || input.validity.rangeUnderflow) {
+      errorMessage = `Value must be between 1 and ${boardSize}.`;
+      isValid = false;
+    } else if (input.validity.badInput) {
+      errorMessage = "Value must be an integer number.";
+      isValid = false;
+    }
 
-      if (input.validity.valueMissing) {
-        errorMessage = "This field is required.";
-        isValid = false;
-      } else if (
-        input.validity.rangeOverflow ||
-        input.validity.rangeUnderflow
-      ) {
-        errorMessage = `Value must be between 1 and ${boardSize}.`;
-        isValid = false;
-      } else if (input.validity.badInput) {
-        errorMessage = "Value must be an integer number.";
-        isValid = false;
+    if (!isValid) {
+      if (showError) {
+        setFieldsetError(fieldset, errorMessage);
+        input.classList.add("invalid");
       }
-
-      if (!isValid) {
-        if (showError) {
-          setFieldsetError(fieldset, errorMessage);
-          input.classList.add("invalid");
-        }
-        return false;
-      } else {
-        clearInvalidStatus(input);
-      }
+      return false;
+    } else {
+      clearInvalidStatus(input);
     }
 
     if (fieldsetIsValid(fieldset)) {

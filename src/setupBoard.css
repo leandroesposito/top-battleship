@@ -1,9 +1,3 @@
-/*
-TODO
-place-ship-button
-.error-message
-*/
-
 .panels {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50vmin, 1fr));

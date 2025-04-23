@@ -1,8 +1,8 @@
 import createSetupForm from "./setupFormRenderer.js";
-import initSetupBoard from "./setupBoardController.js";
 import Player from "./entities/Player.js";
 import Gameboard from "./entities/Gameboard.js";
 import initGame from "./gameController.js";
+import initSetupBoard from "./setupBoardController.js";
 
 export default function initSetup() {
   function handlePlayersSubmit() {

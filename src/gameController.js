@@ -15,6 +15,7 @@ export default function initGame(player1, player2) {
     button.dataset.switchPlayer = "false";
     button.disabled = true;
     button.textContent = "End turn";
+    button.scrollIntoView();
 
     const opponentBoardContainer = document.querySelector(
       ".opponent .gameboard",

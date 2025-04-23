@@ -5,11 +5,7 @@ import generateBoard from "./boardRenderer.js";
 
 export default function initGame(player1, player2) {
   function initTurn() {
-    const gameContainer = document.querySelector(".game-container");
-    gameContainer.innerHTML = "";
-    gameContainer.appendChild(
-      generateTurn(game.getCurrentPlayer(), game.getOpponentPlayer()),
-    );
+    renderBoards(game.getCurrentPlayer(), game.getOpponentPlayer());
 
     const button = document.querySelector(".continue");
     button.dataset.switchPlayer = "false";
@@ -67,8 +63,12 @@ export default function initGame(player1, player2) {
 
   function handleGameEnd() {
     const h1 = document.querySelector(".game h1");
-    h1.textContent =
-      "Game over! " + game.getCurrentPlayer().getName() + " wins!";
+  }
+
+  function renderBoards(playerLeft, playerRight) {
+    const gameContainer = document.querySelector(".game-container");
+    gameContainer.innerHTML = "";
+    gameContainer.appendChild(generateTurn(playerLeft, playerRight));
   }
 
   function renderGameTemplate() {

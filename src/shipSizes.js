@@ -1,1 +1,1 @@
-export const shipSizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
+export const shipSizes = [2];

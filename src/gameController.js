@@ -2,6 +2,7 @@ import Game from "./entities/Game.js";
 import { createElement } from "./htmlGenerators";
 import generateTurn from "./turnRenderer.js";
 import generateBoard from "./boardRenderer.js";
+import ComputerPlayer from "./entities/ComputerPlayer.js";
 
 export default function initGame(player1, player2) {
   function initTurn() {
@@ -41,6 +42,13 @@ export default function initGame(player1, player2) {
     }
   };
 
+  function makeComputerAttack() {
+    game.switchPlayer();
+    const attack = game.getCurrentPlayer().getRandomAttack();
+    game.attack(attack.x, attack.y);
+    game.switchPlayer();
+  }
+
   function finishTurn() {
     const opponentBoardContainer = document.querySelector(
       ".opponent .gameboard",
@@ -55,6 +63,18 @@ export default function initGame(player1, player2) {
     if (game.getOpponentPlayer().getGameboard().allShipsSunk()) {
       handleGameEnd();
       return;
+    }
+
+    if (game.getOpponentPlayer() instanceof ComputerPlayer) {
+      makeComputerAttack();
+      if (game.isOver) {
+        setTimeout(() => {
+          handleGameEnd();
+          renderBoards(game.getCurrentPlayer(), game.getOpponentPlayer());
+        }, 500);
+        return;
+      }
+      setTimeout(initTurn, 500);
     }
 
     const button = document.querySelector(".continue");

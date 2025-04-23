@@ -1,8 +1,10 @@
 import createSetupForm from "./setupFormRenderer.js";
 import Player from "./entities/Player.js";
+import ComputerPlayer from "./entities/ComputerPlayer.js";
 import Gameboard from "./entities/Gameboard.js";
 import initGame from "./gameController.js";
 import initSetupBoard from "./setupBoardController.js";
+import { shipSizes } from "./shipSizes.js";
 
 export default function initSetup() {
   function handlePlayersSubmit() {
@@ -21,7 +23,20 @@ export default function initSetup() {
     }
 
     player1 = new Player(player1Input.value, new Gameboard(10));
-    player2 = new Player(player2Input.value, new Gameboard(10));
+
+    if (playAgainstComputerCheckbox.checked) {
+      const computerGameboard = Gameboard.generateRandomBoard(
+        shipSizes,
+        10,
+        10,
+      );
+      player2 = new ComputerPlayer(
+        player2Input.value || "Computer",
+        computerGameboard,
+      );
+    } else {
+      player2 = new Player(player2Input.value, new Gameboard(10));
+    }
 
     setupBoards();
   }
@@ -32,6 +47,12 @@ export default function initSetup() {
     const submitButton = document.querySelector(".submit-board");
     submitButton.addEventListener("click", () => {
       handlerBoardSubmit(player1);
+
+      if (player2 instanceof ComputerPlayer) {
+        initGame(player1, player2);
+        return;
+      }
+
       initSetupBoard(player2.getName(), 10);
       window.scrollTo(0, 0);
       const submitButton = document.querySelector(".submit-board");

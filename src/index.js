@@ -13,6 +13,8 @@ import generateSetupBoardForm from "./setupBoardFormRenderer.js";
 
 import initSetupBoard from "./setupBoardController.js";
 
+import initSetup from "./setupController.js";
+
 (function init() {
   function loadContent(functionGenerator) {
     const main = document.querySelector("main");
@@ -20,5 +22,5 @@ import initSetupBoard from "./setupBoardController.js";
     main.appendChild(functionGenerator());
   }
 
-  initSetupBoard("john", 10);
+  initSetup();
 })();

@@ -116,7 +116,7 @@ export default function initSetupBoard(playerName, boardSize) {
     }
 
     renderBoard(gameboard, gameboardPreview);
-    const confirmBoardButton = document.querySelector(".continue");
+    const confirmBoardButton = document.querySelector(".submit-board");
     confirmBoardButton.disabled = !isValidBoard;
 
     return isValidBoard;

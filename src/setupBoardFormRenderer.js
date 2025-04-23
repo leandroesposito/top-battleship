@@ -32,7 +32,7 @@ export default function generateSetupBoardForm(playerName, boardSize) {
   }
 
   const buttonContainer = createElement("div", "button-container");
-  const button = createElement("button", "continue");
+  const button = createElement("button", "submit-board");
   button.textContent = "Confirm board";
   button.disabled = true;
   buttonContainer.appendChild(button);

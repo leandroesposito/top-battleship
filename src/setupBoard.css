@@ -123,22 +123,25 @@
   transform: scaleY(1);
 }
 
-.setup-board-form-container > button {
+.setup-board-form-container .submit-board {
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 5px 5px black;
   background-color: var(--theme-color);
-  color: var(--font-color);
   font-family: var(--font-family);
   margin: auto;
-  cursor: pointer;
 }
 
-.setup-board-form-container > button:active {
-  translate: 5px 5px;
+.setup-board-form-container .submit-board:not(:disabled) {
+  color: var(--font-color);
+  cursor: pointer;
+  box-shadow: 5px 5px black;
+}
+
+.setup-board-form-container .submit-board:active:not(:disabled) {
   box-shadow: none;
+  translate: 5px 5px;
 }
 
 .board-container {

@@ -116,6 +116,9 @@ export default function initSetupBoard(playerName, boardSize) {
     }
 
     renderBoard(gameboard, gameboardPreview);
+    const confirmBoardButton = document.querySelector(".continue");
+    confirmBoardButton.disabled = !isValidBoard;
+
     return isValidBoard;
   }
 

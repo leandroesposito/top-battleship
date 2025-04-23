@@ -23,7 +23,7 @@ export default function initSetupBoard(playerName, boardSize) {
   }
 
   function addDraggableButtonsListeners() {
-    const buttons = document.querySelectorAll(".place-ship-button");
+    const buttons = document.querySelectorAll(".draggable-place-ship-icon");
     buttons.forEach((button) => {
       button.addEventListener("dragstart", handleDragStart);
       button.addEventListener("dragend", handleDragEnd);

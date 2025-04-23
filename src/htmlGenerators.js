@@ -7,11 +7,21 @@ export function createElement(type, ...classNames) {
 export function createShipPlacer(shipSize, boardSize) {
   const container = document.createDocumentFragment();
 
-  const button = createElement("button", "place-ship-button");
-  button.textContent = "Place clicking board";
-  button.type = "button";
-  button.draggable = true;
-  container.appendChild(button);
+  const draggablePlacer = createElement("div", "draggable-place-ship");
+  const iconContainer = createElement(
+    "div",
+    "icon-container",
+    "draggable-place-ship-icon",
+  );
+  const icon = createElement("div", "icon", "pointer");
+  iconContainer.appendChild(icon);
+  iconContainer.draggable = true;
+  draggablePlacer.appendChild(iconContainer);
+
+  const draggableText = createElement("div");
+  draggableText.textContent = "Drag to board";
+  draggablePlacer.appendChild(draggableText);
+  container.appendChild(draggablePlacer);
 
   const xCoordRow = createElement("div", "coord-row", "form-row");
   xCoordRow.appendChild(

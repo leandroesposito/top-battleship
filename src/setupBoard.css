@@ -42,20 +42,31 @@
   margin-bottom: 1rem;
 }
 
-.place-ship-button {
-  font-size: 1rem;
-  padding: 0.5rem;
+.setup-board-form fieldset .icon-container {
+  width: 2rem;
+  height: 2rem;
 }
 
-.place-ship-button.dragging {
-  padding: 0;
-  width: 3rem;
-  height: 3rem;
-  line-height: 0;
-  text-indent: -9999px;
-  background-color: var(--ship-color);
-  border: 2px solid black;
+.draggable-place-ship {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
 }
+
+.pointer {
+  background-image: url("./icons/pointer.svg");
+}
+
+.draggable-place-ship-icon {
+  cursor: grab;
+}
+
+.draggable-place-ship-icon:active {
+  cursor: grabbing;
+}
+
 .setup-board-form .form-row {
   display: flex;
   flex-wrap: wrap;

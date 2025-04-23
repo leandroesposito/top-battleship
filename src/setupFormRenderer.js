@@ -1,4 +1,4 @@
-import { createElement } from "./elements-generators.js";
+import { createElement } from "./htmlGenerators.js";
 
 export default function generateSetupForm() {
   const form = createElement("form", "setup-form");
@@ -50,7 +50,7 @@ export default function generateSetupForm() {
   form.appendChild(isComputerRow);
 
   const buttonRow = createElement("div", "form-row");
-  const button = createElement("button", "button");
+  const button = createElement("button", "submit-button");
   button.type = "button";
   button.innerText = "Start Game";
   buttonRow.appendChild(button);

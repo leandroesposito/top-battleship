@@ -27,7 +27,6 @@ export default function initGame(player1, player2) {
   }
 
   const handleGameboardClick = (event) => {
-    console.log(event);
     const cellElement = event.target;
     if (!cellElement.classList.contains("cell")) {
       return;

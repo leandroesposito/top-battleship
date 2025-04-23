@@ -58,6 +58,7 @@ export default function initSetupBoard(playerName, boardSize) {
   }
 
   function handleDragEnd(event) {
+    event.target.classList.remove("dragging");
     const gameboardElement = gameboardPreview.querySelector(".gameboard");
     gameboardElement.classList.remove("highlight-hover");
   }

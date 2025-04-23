@@ -39,6 +39,10 @@ place-ship-button
   font-size: 1.2rem;
 }
 
+.setup-board-form fieldset.valid {
+  border: 2px solid green;
+}
+
 .setup-board h1 {
   text-align: center;
   margin-bottom: 1rem;

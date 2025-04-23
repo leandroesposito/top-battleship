@@ -83,7 +83,7 @@ export default function initSetupBoard(playerName, boardSize) {
     gameboardPreview.classList.remove("highlight-hover");
   }
 
-  function handleValueChange(event) {
+  function handleValueChange() {
     const fielsets = document.querySelectorAll("fieldset");
     gameboard = new Gameboard(boardSize);
     let isValidBoard = true;

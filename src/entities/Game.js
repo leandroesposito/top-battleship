@@ -24,4 +24,8 @@ export default class Game {
       this.currentPlayer = this.player1;
     }
   }
+
+  get isOver() {
+    return this.player1.allShipsSunk() || this.player2.allShipsSunk();
+  }
 }

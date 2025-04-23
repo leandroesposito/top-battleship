@@ -85,7 +85,7 @@ export default function initSetupBoard(playerName, boardSize) {
 
   function handleValueChange() {
     const fielsets = document.querySelectorAll("fieldset");
-    gameboard = new Gameboard(boardSize);
+    const gameboard = new Gameboard(boardSize);
     let isValidBoard = true;
 
     for (let i = 0; i < fielsets.length; i++) {
@@ -187,7 +187,7 @@ export default function initSetupBoard(playerName, boardSize) {
   addDraggableButtonsListeners();
 
   let draggedButton = null;
-  let gameboard = new Gameboard(boardSize);
+  const gameboard = new Gameboard(boardSize);
   const gameboardPreview = document.querySelector(".board-container");
 
   renderBoard(gameboard, gameboardPreview);

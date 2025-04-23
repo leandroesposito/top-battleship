@@ -150,7 +150,7 @@
   align-items: start;
 }
 
-.gameboard {
+.panels .gameboard {
   position: sticky;
   top: 25vh;
 }

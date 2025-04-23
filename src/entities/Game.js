@@ -28,4 +28,11 @@ export default class Game {
   get isOver() {
     return this.player1.allShipsSunk() || this.player2.allShipsSunk();
   }
+
+  get winner() {
+    if (!this.player1.allShipsSunk() && !this.player2.allShipsSunk()) {
+      return null;
+    }
+    return this.player1.allShipsSunk() ? this.player2 : this.player1;
+  }
 }

@@ -161,6 +161,12 @@ export default function initSetupBoard(playerName, boardSize) {
   function setFieldsetError(fieldset, errorMessage) {
     const errorElement = fieldset.querySelector(".error-message");
     errorElement.textContent = errorMessage;
+
+    if (errorMessage) {
+      fieldset.classList.remove("valid");
+    } else {
+      fieldset.classList.add("valid");
+    }
   }
 
   function fieldsetIsValid(fieldset) {

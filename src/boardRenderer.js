@@ -3,6 +3,9 @@ import { createElement } from "./htmlGenerators.js";
 export default function generateBoard(gameboard, isOpponent = false) {
   const boardElement = createElement("div", "gameboard");
 
+  boardElement.style.gridTemplateColumns = `repeat(${gameboard.getWidth()}, 5vmin)`;
+  boardElement.style.gridTemplateRows = `repeat(${gameboard.getHeight()}, 5vmin)`;
+
   for (let y = 0; y < gameboard.getHeight(); y++) {
     for (let x = 0; x < gameboard.getWidth(); x++) {
       const cellData = gameboard.getCell(x, y);

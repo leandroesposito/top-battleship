@@ -16,6 +16,7 @@
 .cell {
   box-sizing: border-box;
   border: 1px solid #000000;
+  transition: all 0.2s ease-in-out;
 }
 
 .opponent .gameboard .cell:hover {

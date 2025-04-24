@@ -68,13 +68,14 @@ test("Game all ships sunk", () => {
   const player2 = new Player("Player 2", new Gameboard(10));
 
   const game = new Game(player1, player2);
-  player1.placeShip(0, 0, 1, true);
+  player2.placeShip(0, 0, 1, true);
 
-  expect(game.getCurrentPlayer()).toBe(player1);
-  expect(player1.allShipsSunk()).toBeFalsy();
+  expect(game.getOpponentPlayer()).toBe(player2);
+  expect(player2.allShipsSunk()).toBeFalsy();
 
   expect(game.attack(0, 0)).toBe("hit");
 
-  expect(player1.allShipsSunk()).toBeTruthy();
+  expect(player2.allShipsSunk()).toBeTruthy();
   expect(game.getCurrentPlayer()).toBe(player1);
+  expect(game.getOpponentPlayer()).toBe(player2);
 });

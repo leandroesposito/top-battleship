@@ -102,6 +102,9 @@ export default function initGame(player1, player2) {
 
     const button = document.querySelector(".continue");
     button.addEventListener("click", handleTurnEnd);
+    if (game.getOpponentPlayer() instanceof ComputerPlayer) {
+      button.style.display = "none";
+    }
   }
 
   function handleTurnEnd(event) {

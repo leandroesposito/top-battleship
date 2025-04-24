@@ -60,7 +60,7 @@ export default function initGame(player1, player2) {
 
     opponentBoardContainer.removeEventListener("click", handleGameboardClick);
 
-    if (game.getOpponentPlayer().getGameboard().allShipsSunk()) {
+    if (game.isOver) {
       handleGameEnd();
       return;
     }
@@ -83,6 +83,7 @@ export default function initGame(player1, player2) {
 
   function handleGameEnd() {
     const h1 = document.querySelector(".game h1");
+    h1.textContent = "Game over! " + game.winner.getName() + " wins!";
   }
 
   function renderBoards(playerLeft, playerRight) {

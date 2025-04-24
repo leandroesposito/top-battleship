@@ -40,6 +40,8 @@ test("Game switch player", () => {
   player1.placeShip(0, 0, 2, true);
   expect(game.getCurrentPlayer()).toBe(player1);
   game.attack(0, 0);
+  expect(game.getCurrentPlayer()).toBe(player1);
+  game.switchPlayer();
   expect(game.getCurrentPlayer()).toBe(player2);
 });
 

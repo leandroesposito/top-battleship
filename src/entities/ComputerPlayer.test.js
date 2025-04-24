@@ -37,3 +37,10 @@ test("ComputerPlayer attack until no spaces left", () => {
     "No spaces left to attack",
   );
 });
+
+test("ComputerPlayer attack registered neighbour", () => {
+  const computerPlayer = new ComputerPlayer("Computer", new Gameboard(10));
+  computerPlayer.registerHit({ x: 0, y: 0 });
+  expect(computerPlayer.getAttack()).toContainEqual({ x: 1, y: 0 });
+  expect(computerPlayer.getAttack()).toContainEqual({ x: 0, y: 1 });
+});

@@ -54,7 +54,7 @@ export default function initGame(player1, player2) {
 
   function finishTurn() {
     const opponentBoardContainer = document.querySelector(
-      ".opponent .gameboard",
+      ".opponent .gameboard-container",
     );
     opponentBoardContainer.innerHTML = "";
     opponentBoardContainer.appendChild(

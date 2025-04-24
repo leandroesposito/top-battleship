@@ -8,13 +8,21 @@ export default class ComputerPlayer extends Player {
   }
 
   static #initializeAttacksList(gameboard) {
-    const attackGameboard = new Set();
+    const attacksGameboard = new Set();
     for (let i = 0; i < gameboard.getBoard().length; i++) {
       for (let j = 0; j < gameboard.getBoard()[i].length; j++) {
-        attackGameboard.add({ x: i, y: j });
+        attacksGameboard.add(`{"x":${i},"y":${j}}`);
       }
     }
-    return attackGameboard;
+    return attacksGameboard;
+  }
+
+  #attacksGameboardHas({ x, y }) {
+    this.#attacksGameboard.has(`{"x":${x},"y":${y}}`);
+  }
+
+  #attacksGameboardDelete({ x, y }) {
+    this.#attacksGameboard.delete(`{"x":${x},"y":${y}}`);
   }
 
   getRandomAttack() {
@@ -27,6 +35,6 @@ export default class ComputerPlayer extends Player {
     ];
     this.#attacksGameboard.delete(randomAttack);
 
-    return randomAttack;
+    return JSON.parse(randomAttack);
   }
 }

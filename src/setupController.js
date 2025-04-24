@@ -22,27 +22,27 @@ export default function initSetup() {
       return;
     }
 
-    player1 = new Player(player1Input.value, new Gameboard(10));
+    player1 = new Player(player1Input.value, new Gameboard(boardSize));
 
     if (playAgainstComputerCheckbox.checked) {
       const computerGameboard = Gameboard.generateRandomBoard(
         shipSizes,
-        10,
-        10,
+        boardSize,
+        boardSize,
       );
       player2 = new ComputerPlayer(
         player2Input.value || "Computer",
         computerGameboard,
       );
     } else {
-      player2 = new Player(player2Input.value, new Gameboard(10));
+      player2 = new Player(player2Input.value, new Gameboard(boardSize));
     }
 
     setupBoards();
   }
 
   function setupBoards() {
-    initSetupBoard(player1.getName(), 10);
+    initSetupBoard(player1.getName(), boardSize);
 
     const submitButton = document.querySelector(".submit-board");
     submitButton.addEventListener("click", () => {
@@ -53,7 +53,7 @@ export default function initSetup() {
         return;
       }
 
-      initSetupBoard(player2.getName(), 10);
+      initSetupBoard(player2.getName(), boardSize);
       window.scrollTo(0, 0);
       const submitButton = document.querySelector(".submit-board");
       submitButton.addEventListener("click", () => {
@@ -76,6 +76,7 @@ export default function initSetup() {
     }
   }
 
+  const boardSize = 10;
   loadContent(createSetupForm);
   let player1;
   let player2;

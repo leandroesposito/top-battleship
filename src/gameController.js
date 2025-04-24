@@ -44,8 +44,11 @@ export default function initGame(player1, player2) {
 
   function makeComputerAttack() {
     game.switchPlayer();
-    const attack = game.getCurrentPlayer().getRandomAttack();
-    game.attack(attack.x, attack.y);
+    const position = game.getCurrentPlayer().getAttack();
+    const result = game.attack(position.x, position.y);
+    if (result === "hit") {
+      game.getCurrentPlayer().registerHit(position);
+    }
     game.switchPlayer();
   }
 

@@ -11,18 +11,18 @@ export default class ComputerPlayer extends Player {
     const attacksGameboard = new Set();
     for (let i = 0; i < gameboard.getBoard().length; i++) {
       for (let j = 0; j < gameboard.getBoard()[i].length; j++) {
-        attacksGameboard.add(`{"x":${i},"y":${j}}`);
+        attacksGameboard.add(JSON.stringify({ x: i, y: j }));
       }
     }
     return attacksGameboard;
   }
 
-  #attacksGameboardHas({ x, y }) {
-    this.#attacksGameboard.has(`{"x":${x},"y":${y}}`);
+  #attacksGameboardHas(coords) {
+    return this.#attacksGameboard.has(JSON.stringify(coords));
   }
 
-  #attacksGameboardDelete({ x, y }) {
-    this.#attacksGameboard.delete(`{"x":${x},"y":${y}}`);
+  #attacksGameboardDelete(coords) {
+    this.#attacksGameboard.delete(JSON.stringify(coords));
   }
 
   getRandomAttack() {

@@ -30,12 +30,10 @@ test("ComputerPlayer attack until no spaces left", () => {
   const totalItems = gameboard.length * gameboard[0].length;
 
   for (let i = 0; i < totalItems; i++) {
-    expect(computerPlayer.getRandomAttack()).toBeDefined();
+    expect(computerPlayer.getAttack()).toBeDefined();
   }
 
-  expect(() => computerPlayer.getRandomAttack()).toThrow(
-    "No spaces left to attack",
-  );
+  expect(() => computerPlayer.getAttack()).toThrow("No spaces left to attack");
 });
 
 test("ComputerPlayer attack registered neighbour", () => {

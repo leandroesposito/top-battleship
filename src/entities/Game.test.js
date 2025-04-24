@@ -43,7 +43,8 @@ test("Game switch player", () => {
   expect(game.getCurrentPlayer()).toBe(player2);
 });
 
-test("Game don't switch player on failed attack", () => {
+// Obsolete test, switch player logic changed to be used manually
+test.skip("Game don't switch player on failed attack", () => {
   const player1 = new Player("Player 1", new Gameboard(10));
   const player2 = new Player("Player 2", new Gameboard(10));
 

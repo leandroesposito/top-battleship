@@ -126,7 +126,11 @@ export default class Gameboard {
 
       // if the ship cannot be placed, generate a new board
       if (!placed) {
-        return generateRandomBoard(shipSizes, boardWidth, boardHeight);
+        return Gameboard.generateRandomBoard(
+          shipSizes,
+          boardWidth,
+          boardHeight,
+        );
       }
     }
 

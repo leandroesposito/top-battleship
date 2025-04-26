@@ -11,12 +11,16 @@
   grid-template-columns: repeat(10, 5vmin);
   grid-template-rows: repeat(10, 5vmin);
   border: 1px solid #000000;
+  justify-items: center;
+  align-items: center;
 }
 
 .cell {
   box-sizing: border-box;
   border: 1px solid #000000;
   transition: all 0.2s ease-in-out;
+  justify-self: stretch;
+  align-self: stretch;
 }
 
 .opponent .gameboard .cell:hover {

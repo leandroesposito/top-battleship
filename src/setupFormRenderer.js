@@ -52,7 +52,7 @@ export default function generateSetupForm() {
   const buttonRow = createElement("div", "form-row");
   const button = createElement("button", "submit-players");
   button.type = "button";
-  button.innerText = "Start Game";
+  button.innerText = "Next";
   buttonRow.appendChild(button);
   form.appendChild(buttonRow);
 

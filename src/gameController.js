@@ -102,6 +102,7 @@ export default function initGame(player1, player2) {
 
     const button = document.querySelector(".continue");
     button.addEventListener("click", handleTurnEnd);
+    button.dataset.switchPlayer = "true";
     if (game.getOpponentPlayer() instanceof ComputerPlayer) {
       button.style.display = "none";
     }
@@ -110,13 +111,16 @@ export default function initGame(player1, player2) {
   function handleTurnEnd(event) {
     const button = event.target;
     const switchPlayer = button.dataset.switchPlayer === "true";
-
     if (switchPlayer) {
       game.switchPlayer();
       initTurn();
       return;
     }
+    showTransitionScreen();
+  }
 
+  function showTransitionScreen() {
+    const button = document.querySelector(".continue");
     button.dataset.switchPlayer = "true";
     button.textContent = "Start turn";
     const gameContainer = document.querySelector(".game-container");
@@ -145,6 +149,9 @@ export default function initGame(player1, player2) {
 
   const game = new Game(player1, player2);
   renderGameTemplate();
-
-  initTurn(game);
+  if (player2 instanceof ComputerPlayer) {
+    initTurn();
+  } else {
+    showTransitionScreen();
+  }
 }

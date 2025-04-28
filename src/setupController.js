@@ -58,7 +58,7 @@ export default function initSetup() {
       const submitButton = document.querySelector(".submit-board");
       submitButton.addEventListener("click", () => {
         handlerBoardSubmit(player2);
-        initGame(player1, player2);
+        initGame(player2, player1);
       });
     });
   }

@@ -23,7 +23,7 @@ export default function generateBoard(gameboard, isOpponent = false) {
       if (x === 0) {
         const letterCoord = createElement("div", "coord-cell");
         letterCoord.style.fontSize = `${50 / gameboard.getWidth() - 1}vmin`;
-        letterCoord.textContent = String.fromCharCode(65 + y);
+        letterCoord.textContent = y + 1;
         boardElement.appendChild(letterCoord);
         continue;
       }

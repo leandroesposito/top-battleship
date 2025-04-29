@@ -169,7 +169,7 @@ function generateSetupForm() {
   const buttonRow = createElement("div", "form-row");
   const button = createElement("button", "submit-players");
   button.type = "button";
-  button.innerText = "Start Game";
+  button.innerText = "Next";
   buttonRow.appendChild(button);
   form.appendChild(buttonRow);
 
@@ -517,7 +517,7 @@ function generateBoard(gameboard, isOpponent = false) {
       if (x === 0) {
         const letterCoord = createElement("div", "coord-cell");
         letterCoord.style.fontSize = `${50 / gameboard.getWidth() - 1}vmin`;
-        letterCoord.textContent = String.fromCharCode(65 + y);
+        letterCoord.textContent = y + 1;
         boardElement.appendChild(letterCoord);
         continue;
       }
@@ -601,6 +601,11 @@ function initGame(player1, player2) {
     button.disabled = true;
     button.textContent = "End turn";
     button.scrollIntoView();
+
+    const informationContainer = document.querySelector(
+      ".information-container",
+    );
+    informationContainer.style.display = "grid";
 
     const opponentBoardContainer = document.querySelector(
       ".opponent .gameboard",
@@ -690,6 +695,7 @@ function initGame(player1, player2) {
 
     const button = document.querySelector(".continue");
     button.addEventListener("click", handleTurnEnd);
+    button.dataset.switchPlayer = "true";
     if (game.getOpponentPlayer() instanceof ComputerPlayer) {
       button.style.display = "none";
     }
@@ -698,17 +704,27 @@ function initGame(player1, player2) {
   function handleTurnEnd(event) {
     const button = event.target;
     const switchPlayer = button.dataset.switchPlayer === "true";
-
     if (switchPlayer) {
       game.switchPlayer();
       initTurn();
       return;
     }
+    showTransitionScreen();
+  }
 
+  function showTransitionScreen() {
+    const informationContainer = document.querySelector(
+      ".information-container",
+    );
+    informationContainer.style.display = "none";
+
+    const button = document.querySelector(".continue");
     button.dataset.switchPlayer = "true";
     button.textContent = "Start turn";
+
     const gameContainer = document.querySelector(".game-container");
     gameContainer.innerHTML = "";
+
     const h1 = document.querySelector(".game h1");
     h1.textContent = "Pass the screen to " + game.getOpponentPlayer().getName();
   }
@@ -722,6 +738,26 @@ function initGame(player1, player2) {
     const gameContainer = createElement("div", "game-container");
     container.appendChild(gameContainer);
 
+    const cellTypes = [
+      { classList: ["unknown"], description: "empty / not explored" },
+      { classList: ["hit"], description: "miss" },
+      { classList: ["hit", "ship"], description: "hit" },
+      { classList: ["ship"], description: "ship" },
+      { classList: ["ship", "sunk"], description: "sunk" },
+    ];
+    const informationContainer = createElement("div", "information-container");
+    for (let i = 0; i < cellTypes.length; i++) {
+      const cellInfo = cellTypes[i];
+      const informationRow = createElement("div", "information-row");
+      const cell = createElement("div", "cell", ...cellInfo.classList);
+      const description = createElement("div", "description");
+      description.textContent = cellInfo.description;
+      informationRow.appendChild(cell);
+      informationRow.appendChild(description);
+      informationContainer.appendChild(informationRow);
+    }
+    container.appendChild(informationContainer);
+
     const buttonContainer = createElement("div", "botton-container");
     const button = createElement("button", "continue");
     button.innerText = "End turn";
@@ -733,12 +769,15 @@ function initGame(player1, player2) {
 
   const game = new Game(player1, player2);
   renderGameTemplate();
-
-  initTurn(game);
+  if (player2 instanceof ComputerPlayer) {
+    initTurn();
+  } else {
+    showTransitionScreen();
+  }
 }
 
 ;// ./src/shipSizes.js
-const shipSizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
+const shipSizes = [1];
 
 ;// ./src/setupBoardFormRenderer.js
 
@@ -1050,7 +1089,7 @@ function initSetup() {
       const submitButton = document.querySelector(".submit-board");
       submitButton.addEventListener("click", () => {
         handlerBoardSubmit(player2);
-        initGame(player1, player2);
+        initGame(player2, player1);
       });
     });
   }

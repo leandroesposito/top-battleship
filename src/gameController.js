@@ -14,6 +14,11 @@ export default function initGame(player1, player2) {
     button.textContent = "End turn";
     button.scrollIntoView();
 
+    const informationContainer = document.querySelector(
+      ".information-container",
+    );
+    informationContainer.style.display = "grid";
+
     const opponentBoardContainer = document.querySelector(
       ".opponent .gameboard",
     );
@@ -120,11 +125,18 @@ export default function initGame(player1, player2) {
   }
 
   function showTransitionScreen() {
+    const informationContainer = document.querySelector(
+      ".information-container",
+    );
+    informationContainer.style.display = "none";
+
     const button = document.querySelector(".continue");
     button.dataset.switchPlayer = "true";
     button.textContent = "Start turn";
+
     const gameContainer = document.querySelector(".game-container");
     gameContainer.innerHTML = "";
+
     const h1 = document.querySelector(".game h1");
     h1.textContent = "Pass the screen to " + game.getOpponentPlayer().getName();
   }
@@ -137,6 +149,26 @@ export default function initGame(player1, player2) {
 
     const gameContainer = createElement("div", "game-container");
     container.appendChild(gameContainer);
+
+    const cellTypes = [
+      { classList: ["unknown"], description: "empty / not explored" },
+      { classList: ["hit"], description: "miss" },
+      { classList: ["hit", "ship"], description: "hit" },
+      { classList: ["ship"], description: "ship" },
+      { classList: ["ship", "sunk"], description: "sunk" },
+    ];
+    const informationContainer = createElement("div", "information-container");
+    for (let i = 0; i < cellTypes.length; i++) {
+      const cellInfo = cellTypes[i];
+      const informationRow = createElement("div", "information-row");
+      const cell = createElement("div", "cell", ...cellInfo.classList);
+      const description = createElement("div", "description");
+      description.textContent = cellInfo.description;
+      informationRow.appendChild(cell);
+      informationRow.appendChild(description);
+      informationContainer.appendChild(informationRow);
+    }
+    container.appendChild(informationContainer);
 
     const buttonContainer = createElement("div", "botton-container");
     const button = createElement("button", "continue");

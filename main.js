@@ -777,7 +777,7 @@ function initGame(player1, player2) {
 }
 
 ;// ./src/shipSizes.js
-const shipSizes = [1];
+const shipSizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
 
 ;// ./src/setupBoardFormRenderer.js
 

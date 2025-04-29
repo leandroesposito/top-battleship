@@ -35,3 +35,29 @@ button.continue:active:not(:disabled) {
   box-shadow: none;
   translate: 5px 5px;
 }
+
+.information-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(11ch + 1rem + 3rem), 1fr)
+  );
+  justify-items: center;
+}
+
+.information-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.information-row .cell {
+  width: 3rem;
+  height: 3rem;
+}
+
+.information-row .description {
+  width: 11ch;
+  font-weight: 600;
+}

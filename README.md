@@ -18,6 +18,13 @@ This project was specifically designed to demonstrate and practice:
 
 [View Live Demo](https://leandroesposito.github.io/top-battleship/)
 
+## Screenshots
+
+![Setup](https://github.com/leandroesposito/top-battleship/blob/main/screenshots/1_setup.png)
+![Ship placement](https://github.com/leandroesposito/top-battleship/blob/main/screenshots/2_placement.png)
+![Change player screen](https://github.com/leandroesposito/top-battleship/blob/main/screenshots/3_screen_pass.png)
+![Gameplay](https://github.com/leandroesposito/top-battleship/blob/main/screenshots/4_gameplay.png)
+
 ## Test-Driven Development (TDD)
 
 ### What is TDD?
